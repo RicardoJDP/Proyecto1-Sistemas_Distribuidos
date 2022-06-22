@@ -3,13 +3,14 @@ import java.util.Random;
 
 public class Vendedor {
     public String nombre;
-    BancoIngrediente bancoIngrediente;
+    //BancoIngrediente bancoIngrediente;
+    public BancoIngrediente[] bancosIngredientes = new BancoIngrediente[3];
 
     public Vendedor(String nombre){
         this.nombre = nombre;
     }
 
-    public static void surtirBancos(BancoIngrediente bancoFosforo, BancoIngrediente bancoPapel, BancoIngrediente bancoTabaco){
+    public void surtirBancos(BancoIngrediente bancoFosforo, BancoIngrediente bancoPapel, BancoIngrediente bancoTabaco){
 
         int min = 1;
 		int max = 2;

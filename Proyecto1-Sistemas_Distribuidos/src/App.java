@@ -1,40 +1,57 @@
 import java.lang.reflect.Array;
-
 import clases.*;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
 
         BancoIngrediente bancoFosforo = new BancoIngrediente();
         BancoIngrediente bancoPapel = new BancoIngrediente();
         BancoIngrediente bancoTabaco = new BancoIngrediente();
 
-        bancoFosforo.contador_ingrediente = 0;
-        bancoPapel.contador_ingrediente = 0;
-        bancoTabaco.contador_ingrediente = 0;
-
         Cliente cliente1 = new Cliente("Ricardo");
+        Cliente cliente2 = new Cliente("Ana");
+        Cliente cliente3 = new Cliente("Jeiber");
         
         Papel papel = new Papel();
         Fosforo fosforo = new Fosforo();
         Tabaco tabaco = new Tabaco();
-        
+
+        //Esto es importante, siempre hay que inicializarlo asi (Puede variar el orden de los clientes, mas no la posicion del ingrediente)
         cliente1.ingredientes_cigarro[0] = papel;
-        cliente1.ingredientes_cigarro[1] = fosforo;
-        cliente1.ingredientes_cigarro[2] = tabaco;
+        cliente2.ingredientes_cigarro[0] = fosforo;
+        cliente3.ingredientes_cigarro[0] = tabaco;
+        
 
+        Vendedor vend = new Vendedor("Javier");  
+        //Esto es importante, siempre hay que inicializarlo asi       
+        vend.bancosIngredientes[0] = bancoFosforo;
+        vend.bancosIngredientes[1] = bancoPapel;
+        vend.bancosIngredientes[2] = bancoTabaco;
+
+        //Colocando 2 ingredientes por banco
+        bancoFosforo.contador_ingrediente = 2;
+        bancoPapel.contador_ingrediente = 2;
+        bancoTabaco.contador_ingrediente = 2;
+    
+        System.out.println("\n");
+        System.out.println("Cantidad de ingredientes en el Banco Fosforo:"  + vend.bancosIngredientes[0].contador_ingrediente);
+        System.out.println("Cantidad de ingredientes en el Banco Papel:" + vend.bancosIngredientes[1].contador_ingrediente);
+        System.out.println("Cantidad de ingredientes en el Banco Tabaco:" + vend.bancosIngredientes[2].contador_ingrediente);
+        System.out.println("\n");
+        cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
+
+        /*System.out.println("\n");
         for (int i = 0; i<3; i++) {
-            System.out.println(cliente1.ingredientes_cigarro[i]);
-            System.out.println("\n");
-          }
+            System.out.println(cliente3.ingredientes_cigarro[i]);
+          }*/
 
-          //cliente1.contarIngredientesCigarro();
-
-          Vendedor vend = new Vendedor("Javier");
-          Vendedor.surtirBancos(bancoFosforo,bancoPapel,bancoTabaco);
-          
-          System.out.println(bancoFosforo.contador_ingrediente);
-          System.out.println(bancoPapel.contador_ingrediente);
-          System.out.println(bancoTabaco.contador_ingrediente);
+        cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
+        cliente2.armarCigarro(cliente2, vend, fosforo, papel, tabaco);
+        cliente1.armarCigarro(cliente1, vend, fosforo, papel, tabaco);
+        cliente1.armarCigarro(cliente1, vend, fosforo, papel, tabaco);
+        System.out.println("\n");
+        System.out.println(vend.bancosIngredientes[0].contador_ingrediente);
+        System.out.println(vend.bancosIngredientes[1].contador_ingrediente);
+        System.out.println(vend.bancosIngredientes[2].contador_ingrediente);
     } 
 }
