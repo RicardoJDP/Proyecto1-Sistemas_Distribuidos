@@ -29,9 +29,9 @@ public class App {
         vend.bancosIngredientes[2] = bancoTabaco;
 
         //Colocando 2 ingredientes por banco
-        bancoFosforo.contador_ingrediente = 2;
-        bancoPapel.contador_ingrediente = 2;
-        bancoTabaco.contador_ingrediente = 2;
+        bancoFosforo.contador_ingrediente = 1;
+        bancoPapel.contador_ingrediente = 1;
+        bancoTabaco.contador_ingrediente = 1;
     
         System.out.println("\n");
         System.out.println("Cantidad de ingredientes en el Banco Fosforo:"  + vend.bancosIngredientes[0].contador_ingrediente);
@@ -46,9 +46,13 @@ public class App {
           }*/
 
         cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
-        cliente2.armarCigarro(cliente2, vend, fosforo, papel, tabaco);
-        cliente1.armarCigarro(cliente1, vend, fosforo, papel, tabaco);
-        cliente1.armarCigarro(cliente1, vend, fosforo, papel, tabaco);
+        // cliente2.armarCigarro(cliente2, vend, fosforo, papel, tabaco);
+        // cliente1.armarCigarro(cliente1, vend, fosforo, papel, tabaco);
+        // cliente1.armarCigarro(cliente1, vend, fosforo, papel, tabaco);
+        cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
+        cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
+        cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
+
         System.out.println("\n");
         System.out.println(vend.bancosIngredientes[0].contador_ingrediente);
         System.out.println(vend.bancosIngredientes[1].contador_ingrediente);

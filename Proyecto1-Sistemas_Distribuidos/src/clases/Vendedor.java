@@ -19,6 +19,7 @@ public class Vendedor {
 		int value = random.nextInt(max + min) + min;
 		//System.out.println(value);
 
+        //OJITO COLOCAR UN DELAY DE VARIOS SEGUNDOS
         if(value == 1){
             bancoFosforo.agregarIngrediente();
             bancoPapel.agregarIngrediente();
