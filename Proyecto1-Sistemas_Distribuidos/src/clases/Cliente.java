@@ -1,5 +1,9 @@
 package clases;
 
+import java.io.*;
+
+import java.net.*;
+
 public class Cliente {
     
     public String nombre;
@@ -7,12 +11,14 @@ public class Cliente {
     Fosforo fosforo;
     Papel papel;
     Tabaco tabaco;
+    
 
     public Cliente(String nombre){
         this.nombre = nombre;
     }
 
-    public void armarCigarro(Cliente cliente, Vendedor vendedor, Fosforo fosforo, Papel papel, Tabaco tabaco){
+    
+    public synchronized void armarCigarro(Cliente cliente, Vendedor vendedor, Fosforo fosforo, Papel papel, Tabaco tabaco){
         //System.out.println("si entra");
         boolean interrumpir_ciclo = false;
         int contador = 0;
@@ -23,6 +29,7 @@ public class Cliente {
                 //System.out.println("if0");
                 cliente.fumar();
             }else if (cliente.ingredientes_cigarro[0] instanceof Fosforo){
+                System.out.println("\n");
                 System.out.println("Buscando ingredientes del cliente "+ cliente.nombre + " " +contador);
                 if(cliente.ingredientes_cigarro[1] == null)
                     if (vendedor.bancosIngredientes[1].sustraerIngrediente(vendedor.bancosIngredientes[1]))
@@ -59,14 +66,41 @@ public class Cliente {
             }
             else{
                 System.out.println("Se surtio en el banquito");
-                vendedor.surtirBancos(vendedor.bancosIngredientes[0], vendedor.bancosIngredientes[1], vendedor.bancosIngredientes[2]);
                 System.out.println("\n");
-                interrumpir_ciclo = false;
+
+               
+                try{
+
+                    Socket skCliente = new Socket("localhost",5000);
+              
+                    InputStream aux = skCliente.getInputStream();
+              
+                    DataInputStream flujo = new DataInputStream( aux );
+              
+                    System.out.println( flujo.readUTF() );
+
+                    vendedor.surtirBancos(vendedor.bancosIngredientes[0], vendedor.bancosIngredientes[1], vendedor.bancosIngredientes[2]);
+                    System.out.println("\n");
+                    
+                    interrumpir_ciclo = false;
+              
+                    skCliente.close();
+
+              
+                  } catch( Exception e ) {
+              
+                    System.out.println( e.getMessage() );
+              
+                  }
+
+                
             }
-            System.out.println("\n");
+            
+            
         }
     }
     
+
     public int contarIngredientesCigarro(){
         int ingredientesNoNull = 0;
         for (int i = 0; i<3; i++) {
@@ -82,7 +116,10 @@ public class Cliente {
         for (int i = 1; i<3; i++) {
             this.ingredientes_cigarro[i] = null;
         }
+        System.out.println("\n");
         System.out.println("Cigarro fumado"); 
     }
+
+
 
 }

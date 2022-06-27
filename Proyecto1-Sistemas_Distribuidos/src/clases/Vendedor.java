@@ -1,23 +1,68 @@
 package clases;
-import java.util.Random;
 
-public class Vendedor {
+import java.util.Random;
+import java.io.*;
+import java.net.*;
+
+
+class VendedorImp 
+{
+    static final int PUERTO=5000;
+    public static void main(String[] args) throws IOException 
+    {
+
+        
+       try {
+
+      ServerSocket skServidor = new ServerSocket( PUERTO );
+
+      System.out.println("Escucho el puerto " + PUERTO );
+
+        Socket skCliente = skServidor.accept(); // Crea objeto
+
+        OutputStream aux = skCliente.getOutputStream();
+
+        DataOutputStream flujo= new DataOutputStream( aux );
+
+        flujo.writeUTF( "Atendiendo al Fumador");
+
+        skCliente.close();
+
+        //skServidor.close();
+
+    } catch( Exception e ) {
+
+      System.out.println( e.getMessage() );
+
+    }
+
+
+
+  }
+}
+  
+public class Vendedor 
+{
     public String nombre;
     //BancoIngrediente bancoIngrediente;
     public BancoIngrediente[] bancosIngredientes = new BancoIngrediente[3];
+   
 
     public Vendedor(String nombre){
         this.nombre = nombre;
     }
 
-    public void surtirBancos(BancoIngrediente bancoFosforo, BancoIngrediente bancoPapel, BancoIngrediente bancoTabaco){
+    public synchronized void surtirBancos(BancoIngrediente bancoFosforo, BancoIngrediente bancoPapel, BancoIngrediente bancoTabaco){
 
+           
         int min = 1;
 		int max = 2;
 		Random random = new Random();
 
 		int value = random.nextInt(max + min) + min;
 		//System.out.println(value);
+
+        
 
         //OJITO COLOCAR UN DELAY DE VARIOS SEGUNDOS
         if(value == 1){
@@ -31,5 +76,9 @@ public class Vendedor {
             bancoTabaco.agregarIngrediente();
         }
 
+    
+
     }
 }
+
+

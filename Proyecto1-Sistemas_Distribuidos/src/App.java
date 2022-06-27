@@ -1,4 +1,4 @@
-import java.lang.reflect.Array;
+//import java.lang.reflect.Array;
 import clases.*;
 
 public class App {
@@ -46,16 +46,14 @@ public class App {
           }*/
 
         cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
-        // cliente2.armarCigarro(cliente2, vend, fosforo, papel, tabaco);
+        cliente2.armarCigarro(cliente2, vend, fosforo, papel, tabaco);
+        cliente1.armarCigarro(cliente1, vend, fosforo, papel, tabaco);
         // cliente1.armarCigarro(cliente1, vend, fosforo, papel, tabaco);
-        // cliente1.armarCigarro(cliente1, vend, fosforo, papel, tabaco);
-        cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
-        cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
-        cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
+        //cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
+        //cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
+        //cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
 
         System.out.println("\n");
-        System.out.println(vend.bancosIngredientes[0].contador_ingrediente);
-        System.out.println(vend.bancosIngredientes[1].contador_ingrediente);
-        System.out.println(vend.bancosIngredientes[2].contador_ingrediente);
+      
     } 
 }
