@@ -38,7 +38,7 @@ public class App {
         System.out.println("Cantidad de ingredientes en el Banco Papel:" + vend.bancosIngredientes[1].contador_ingrediente);
         System.out.println("Cantidad de ingredientes en el Banco Tabaco:" + vend.bancosIngredientes[2].contador_ingrediente);
         System.out.println("\n");
-        cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
+       
 
         /*System.out.println("\n");
         for (int i = 0; i<3; i++) {

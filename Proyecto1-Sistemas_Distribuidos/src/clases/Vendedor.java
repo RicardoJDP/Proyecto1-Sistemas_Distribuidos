@@ -1,6 +1,7 @@
 package clases;
 
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import java.io.*;
 import java.net.*;
 
@@ -63,17 +64,33 @@ public class Vendedor
 		//System.out.println(value);
 
         
-
-        //OJITO COLOCAR UN DELAY DE VARIOS SEGUNDOS
         if(value == 1){
             bancoFosforo.agregarIngrediente();
             bancoPapel.agregarIngrediente();
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                
+                e.printStackTrace();
+            }
         } else if (value == 2){
             bancoPapel.agregarIngrediente();
             bancoTabaco.agregarIngrediente();
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                
+                e.printStackTrace();
+            }
         } else if (value == 3){
             bancoFosforo.agregarIngrediente();
             bancoTabaco.agregarIngrediente();
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                
+                e.printStackTrace();
+            }
         }
 
     
