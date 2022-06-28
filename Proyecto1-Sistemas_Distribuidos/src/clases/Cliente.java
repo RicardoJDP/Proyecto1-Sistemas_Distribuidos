@@ -35,34 +35,42 @@ public class Cliente {
                 //System.out.println("if0");
                 cliente.fumar();
             }else if (cliente.ingredientes_cigarro[0] instanceof Fosforo){
-                //le falta fosforo, va a buscarlo 
+                //fumador que posee fosforo infinito
                 System.out.println("\n");
                 System.out.println("Buscando ingredientes del cliente "+ cliente.nombre + " " +contador);
                 myLog.addLine("EL CLIENTE: " + this.nombre + " ESTA BUSCANDO INGREDIENTES Y ESTA ES LA BUSQUEDA NUMERO: " + contador);
                 if(cliente.ingredientes_cigarro[1] == null)
+                //el fumador no tiene papel, lo busca
                     if (vendedor.bancosIngredientes[1].sustraerIngrediente(vendedor.bancosIngredientes[1]))
                         cliente.ingredientes_cigarro[1] = papel;
                 if(cliente.ingredientes_cigarro[2] == null)
+                //el fumador no tiene tabaco, lo busca
                     if (vendedor.bancosIngredientes[2].sustraerIngrediente(vendedor.bancosIngredientes[2]))
                         cliente.ingredientes_cigarro[2] = tabaco;
                 //System.out.println("\n");
             }else if(cliente.ingredientes_cigarro[0] instanceof Papel){
+                //fumador con papel infinito
                 System.out.println("Buscando ingredientes del cliente "+ cliente.nombre + " " +contador);
                 myLog.addLine("EL CLIENTE: " + this.nombre + " ESTA BUSCANDO INGREDIENTES Y ESTA ES LA BUSQUEDA NUMERO: " + contador);
                 if(cliente.ingredientes_cigarro[1] == null)
+                //no tiene fosforo, lo busca
                     if (vendedor.bancosIngredientes[0].sustraerIngrediente(vendedor.bancosIngredientes[0]))
                         cliente.ingredientes_cigarro[1] = fosforo;
                 if(cliente.ingredientes_cigarro[2] == null)
+                //no tiene tabaco, lo busca
                     if (vendedor.bancosIngredientes[2].sustraerIngrediente(vendedor.bancosIngredientes[2]))
                         cliente.ingredientes_cigarro[2] = tabaco;
                 //System.out.println("\n");
             }else if(cliente.ingredientes_cigarro[0] instanceof Tabaco){
+                //fumador con tabaco infinito
                 System.out.println("Buscando ingredientes del cliente "+ cliente.nombre + " " +contador);
                 myLog.addLine("EL CLIENTE: " + this.nombre + " ESTA BUSCANDO INGREDIENTES Y ESTA ES LA BUSQUEDA NUMERO: " + contador);
                 if(cliente.ingredientes_cigarro[1] == null)
+                //no tiene fosforo, lo busca
                     if (vendedor.bancosIngredientes[0].sustraerIngrediente(vendedor.bancosIngredientes[0]))
                         cliente.ingredientes_cigarro[1] = fosforo;
                 if(cliente.ingredientes_cigarro[2] == null)
+                //no tiene papel, lo busca
                     if (vendedor.bancosIngredientes[1].sustraerIngrediente(vendedor.bancosIngredientes[1]))
                         cliente.ingredientes_cigarro[2] = papel;
                 //System.out.println("\n");
