@@ -7,6 +7,7 @@ import java.net.*;
 public class Cliente {
     
     public String nombre;
+    //lista de objetos que contiene los ingredientes por fumador
     public Object[] ingredientes_cigarro = new Object[3];
     Fosforo fosforo;
     Papel papel;
@@ -17,18 +18,22 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    
+    //utilizacion del comando synchronized para la exclusion mutua, al ejecutarse este metodo no se puede ejecutar otro
+     
     public synchronized void armarCigarro(Cliente cliente, Vendedor vendedor, Fosforo fosforo, Papel papel, Tabaco tabaco){
         //System.out.println("si entra");
         boolean interrumpir_ciclo = false;
         int contador = 0;
 
+        //ciclo para que se ejecuten los 3 clientes iniciados en el main (App.java) y no termina hasta ejecutar los 3
         while(interrumpir_ciclo == false){
             contador++;
             if(cliente.contarIngredientesCigarro() == 3){
+            //si el cliente tiene los 3 ingredientes entonces fuma
                 //System.out.println("if0");
                 cliente.fumar();
             }else if (cliente.ingredientes_cigarro[0] instanceof Fosforo){
+                //le falta fosforo, va a buscarlo 
                 System.out.println("\n");
                 System.out.println("Buscando ingredientes del cliente "+ cliente.nombre + " " +contador);
                 if(cliente.ingredientes_cigarro[1] == null)
@@ -61,16 +66,19 @@ public class Cliente {
                 //System.out.println(cliente.contarIngredientesCigarro());
             
             if(cliente.contarIngredientesCigarro() == 3){
+
+            // el cliente tiene los tres ingredientes y fuma
                 cliente.fumar();
                 interrumpir_ciclo = true;
             }
             else{
                 System.out.println("Se surtio en el banquito");
+                //el banco esta vacio y se va a llenar
                 System.out.println("\n");
 
                
                 try{
-
+                    //se crea el socket cliente para que haga la peticion al vendedor (servidor) para que llene los bancos
                     Socket skCliente = new Socket("localhost",5000);
               
                     InputStream aux = skCliente.getInputStream();
@@ -79,10 +87,12 @@ public class Cliente {
               
                     System.out.println( flujo.readUTF() );
 
+                    //se llama al metodo para surtir los bancos
                     vendedor.surtirBancos(vendedor.bancosIngredientes[0], vendedor.bancosIngredientes[1], vendedor.bancosIngredientes[2]);
                     System.out.println("\n");
                     
                     interrumpir_ciclo = false;
+                    
               
                     skCliente.close();
 
@@ -100,7 +110,7 @@ public class Cliente {
         }
     }
     
-
+    //se cuentan los ingredientes para saber si estan los 3 
     public int contarIngredientesCigarro(){
         int ingredientesNoNull = 0;
         for (int i = 0; i<3; i++) {
@@ -112,6 +122,7 @@ public class Cliente {
         return ingredientesNoNull;
     }
     
+    //el fumador fuma y se eliminan los ingredientes fumados
     public void fumar(){
         for (int i = 1; i<3; i++) {
             this.ingredientes_cigarro[i] = null;

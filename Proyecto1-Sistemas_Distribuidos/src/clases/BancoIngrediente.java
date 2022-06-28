@@ -6,6 +6,7 @@ public class BancoIngrediente {
     public BancoIngrediente(){
     }
 
+    //se agrega una unidad al contador de los ingredientes cuando se surte el banco
     public void agregarIngrediente(){
         contador_ingrediente =  contador_ingrediente +1;
         System.out.println("Se agrego un ingrediente");
@@ -18,6 +19,7 @@ public class BancoIngrediente {
             return false;
     }*/
 
+    //se elimina una unidad al contador de los ingredientes cuando se sustrae un ingrediente del banco (si hay stock)
     public Boolean sustraerIngrediente(BancoIngrediente bancoIngrediente){
         if(contador_ingrediente > 0){    
             contador_ingrediente = contador_ingrediente -1;

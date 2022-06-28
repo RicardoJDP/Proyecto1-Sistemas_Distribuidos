@@ -4,31 +4,35 @@ import clases.*;
 public class App {
     public static void main(String[] args) throws Exception {
 
+        //creacion de los bancos de cada ingrediente
         BancoIngrediente bancoFosforo = new BancoIngrediente();
         BancoIngrediente bancoPapel = new BancoIngrediente();
         BancoIngrediente bancoTabaco = new BancoIngrediente();
 
+
+         //creacion de los 3 fumadores
         Cliente cliente1 = new Cliente("Ricardo");
         Cliente cliente2 = new Cliente("Ana");
         Cliente cliente3 = new Cliente("Jeiber");
         
+        //creacion de los ingredietes
         Papel papel = new Papel();
         Fosforo fosforo = new Fosforo();
         Tabaco tabaco = new Tabaco();
 
-        //Esto es importante, siempre hay que inicializarlo asi (Puede variar el orden de los clientes, mas no la posicion del ingrediente)
+        //asignacion del ingrediente inicial a cada cliente
         cliente1.ingredientes_cigarro[0] = papel;
         cliente2.ingredientes_cigarro[0] = fosforo;
         cliente3.ingredientes_cigarro[0] = tabaco;
         
-
+        //creacion del vendedor
         Vendedor vend = new Vendedor("Javier");  
-        //Esto es importante, siempre hay que inicializarlo asi       
+        //asignacion de los bancos de ingredientes al vendedor      
         vend.bancosIngredientes[0] = bancoFosforo;
         vend.bancosIngredientes[1] = bancoPapel;
         vend.bancosIngredientes[2] = bancoTabaco;
 
-        //Colocando 2 ingredientes por banco
+        //se colocan 2 ingredientes por banco
         bancoFosforo.contador_ingrediente = 1;
         bancoPapel.contador_ingrediente = 1;
         bancoTabaco.contador_ingrediente = 1;
@@ -45,13 +49,11 @@ public class App {
             System.out.println(cliente3.ingredientes_cigarro[i]);
           }*/
 
+          //llamada al metodo donde los fumadores intentan armar su cigarro
         cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
         cliente2.armarCigarro(cliente2, vend, fosforo, papel, tabaco);
         cliente1.armarCigarro(cliente1, vend, fosforo, papel, tabaco);
-        // cliente1.armarCigarro(cliente1, vend, fosforo, papel, tabaco);
-        //cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
-        //cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
-        //cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
+    
 
         System.out.println("\n");
       
