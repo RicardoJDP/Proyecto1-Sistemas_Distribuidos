@@ -13,14 +13,16 @@ class VendedorImp
    
     public static void main(String[] args) throws IOException 
     {
-
+        Log myLog = new Log("./log.txt");
      
        //Código para que el socket server escuche y reciba peticiones de los fumadores (Cliente)
        try {
 
-      ServerSocket skServidor = new ServerSocket( PUERTO );
+        ServerSocket skServidor = new ServerSocket( PUERTO );
 
-      System.out.println("Escucho el puerto " + PUERTO );
+        System.out.println("Escucho el puerto " + PUERTO );
+
+        myLog.addLine("EL SERVIDOR INICIO Y SE ENCUENTRA ESCUCHANDO EN EL PUERTO: "+ PUERTO);
 
         Socket skCliente = skServidor.accept(); // Crea objeto
 
@@ -56,12 +58,14 @@ public class Vendedor
         this.nombre = nombre;
     }
 
-    public synchronized void surtirBancos(BancoIngrediente bancoFosforo, BancoIngrediente bancoPapel, BancoIngrediente bancoTabaco){
+    public synchronized void surtirBancos(BancoIngrediente bancoFosforo, BancoIngrediente bancoPapel, BancoIngrediente bancoTabaco) throws IOException{
     //utilizacion del comando synchronized para la exclusion mutua, al ejecutarse este metodo no se puede ejecutar otro
            
         int min = 1;
 		int max = 2;
+        Log myLog = new Log("./log.txt");
 
+        myLog.addLine("EL VENDEDOR: "+this.nombre+" VA A SURTIR EL BANQUITO");
         //Declaracion de random surtir los bancos de forma aleatoria
 		Random random = new Random();
 

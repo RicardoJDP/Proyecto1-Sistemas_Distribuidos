@@ -4,6 +4,8 @@ import clases.*;
 public class App {
     public static void main(String[] args) throws Exception {
 
+        Log myLog = new Log("./log.txt");
+
         //creacion de los bancos de cada ingrediente
         BancoIngrediente bancoFosforo = new BancoIngrediente();
         BancoIngrediente bancoPapel = new BancoIngrediente();
@@ -50,10 +52,16 @@ public class App {
           }*/
 
           //llamada al metodo donde los fumadores intentan armar su cigarro
+
+        myLog.addLine("EL CLIENTE: "+ cliente3.nombre + " SE CONECTA CON EL SERVIDOR");
         cliente3.armarCigarro(cliente3, vend, fosforo, papel, tabaco);
+        myLog.addLine("EL CLIENTE: "+ cliente3.nombre + " SE DESCONECTA CON EL SERVIDOR");
+        myLog.addLine("EL CLIENTE: "+ cliente2.nombre + " SE CONECTA CON EL SERVIDOR");
         cliente2.armarCigarro(cliente2, vend, fosforo, papel, tabaco);
+        myLog.addLine("EL CLIENTE: "+ cliente2.nombre + " SE DESCONECTA CON EL SERVIDOR");
+        myLog.addLine("EL CLIENTE: "+ cliente1.nombre + " SE CONECTA CON EL SERVIDOR");
         cliente1.armarCigarro(cliente1, vend, fosforo, papel, tabaco);
-    
+        myLog.addLine("EL CLIENTE: "+ cliente1.nombre + " SE DESCONECTA CON EL SERVIDOR");
 
         System.out.println("\n");
       

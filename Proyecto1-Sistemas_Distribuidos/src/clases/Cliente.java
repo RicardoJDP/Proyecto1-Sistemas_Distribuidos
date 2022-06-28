@@ -12,18 +12,20 @@ public class Cliente {
     Fosforo fosforo;
     Papel papel;
     Tabaco tabaco;
-    
+    Log myLog;
 
-    public Cliente(String nombre){
+    public Cliente(String nombre) throws IOException{
         this.nombre = nombre;
+        myLog = new Log("./log.txt");
     }
 
     //utilizacion del comando synchronized para la exclusion mutua, al ejecutarse este metodo no se puede ejecutar otro
      
-    public synchronized void armarCigarro(Cliente cliente, Vendedor vendedor, Fosforo fosforo, Papel papel, Tabaco tabaco){
+    public synchronized void armarCigarro(Cliente cliente, Vendedor vendedor, Fosforo fosforo, Papel papel, Tabaco tabaco) throws IOException{
         //System.out.println("si entra");
         boolean interrumpir_ciclo = false;
         int contador = 0;
+        myLog.addLine("EL CLIENTE: " + this.nombre + " QUIERE ARMAR UN CIGARRO");
 
         //ciclo para que se ejecuten los 3 clientes iniciados en el main (App.java) y no termina hasta ejecutar los 3
         while(interrumpir_ciclo == false){
@@ -36,6 +38,7 @@ public class Cliente {
                 //le falta fosforo, va a buscarlo 
                 System.out.println("\n");
                 System.out.println("Buscando ingredientes del cliente "+ cliente.nombre + " " +contador);
+                myLog.addLine("EL CLIENTE: " + this.nombre + " ESTA BUSCANDO INGREDIENTES Y ESTA ES LA BUSQUEDA NUMERO: " + contador);
                 if(cliente.ingredientes_cigarro[1] == null)
                     if (vendedor.bancosIngredientes[1].sustraerIngrediente(vendedor.bancosIngredientes[1]))
                         cliente.ingredientes_cigarro[1] = papel;
@@ -45,6 +48,7 @@ public class Cliente {
                 //System.out.println("\n");
             }else if(cliente.ingredientes_cigarro[0] instanceof Papel){
                 System.out.println("Buscando ingredientes del cliente "+ cliente.nombre + " " +contador);
+                myLog.addLine("EL CLIENTE: " + this.nombre + " ESTA BUSCANDO INGREDIENTES Y ESTA ES LA BUSQUEDA NUMERO: " + contador);
                 if(cliente.ingredientes_cigarro[1] == null)
                     if (vendedor.bancosIngredientes[0].sustraerIngrediente(vendedor.bancosIngredientes[0]))
                         cliente.ingredientes_cigarro[1] = fosforo;
@@ -54,6 +58,7 @@ public class Cliente {
                 //System.out.println("\n");
             }else if(cliente.ingredientes_cigarro[0] instanceof Tabaco){
                 System.out.println("Buscando ingredientes del cliente "+ cliente.nombre + " " +contador);
+                myLog.addLine("EL CLIENTE: " + this.nombre + " ESTA BUSCANDO INGREDIENTES Y ESTA ES LA BUSQUEDA NUMERO: " + contador);
                 if(cliente.ingredientes_cigarro[1] == null)
                     if (vendedor.bancosIngredientes[0].sustraerIngrediente(vendedor.bancosIngredientes[0]))
                         cliente.ingredientes_cigarro[1] = fosforo;
@@ -73,6 +78,7 @@ public class Cliente {
             }
             else{
                 System.out.println("Se surtio en el banquito");
+                
                 //el banco esta vacio y se va a llenar
                 System.out.println("\n");
 
@@ -123,10 +129,13 @@ public class Cliente {
     }
     
     //el fumador fuma y se eliminan los ingredientes fumados
-    public void fumar(){
+    public void fumar() throws IOException{
+        
         for (int i = 1; i<3; i++) {
             this.ingredientes_cigarro[i] = null;
         }
+
+        myLog.addLine("EL CLIENTE: " + this.nombre + " CONSIGUIO TODOS LOS INGREDIENTES Y ACABA DE FUMAR UN CIGARRO");
         System.out.println("\n");
         System.out.println("Cigarro fumado"); 
     }
